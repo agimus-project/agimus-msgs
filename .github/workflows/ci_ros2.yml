@@ -31,7 +31,7 @@ jobs:
       #
       # Build and test the repo
       #
-      - uses: ros-tooling/action-ros-ci@0.4.0
+      - uses: ros-tooling/action-ros-ci@0.4.1
         with:
           package-name: agimus_msgs
           target-ros2-distro: ${{ matrix.ros_version }}
