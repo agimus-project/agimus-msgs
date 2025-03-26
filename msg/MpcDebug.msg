@@ -12,6 +12,9 @@ std_msgs/Float64MultiArray control_predictions
 # list of residual values
 agimus_msgs/Residual[] residuals
 
+# list of references values
+agimus_msgs/Residual[] references
+
 # KKT norm condition of the solver
 float64 kkt_norm
 
