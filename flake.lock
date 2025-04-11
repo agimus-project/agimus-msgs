@@ -45,11 +45,16 @@
           "nix-ros-overlay",
           "nixpkgs"
         ],
-        "patch-aligator": "patch-aligator",
+        "patch-0-crocoddyl": "patch-0-crocoddyl",
+        "patch-1-aligator": "patch-1-aligator",
         "patch-brax": "patch-brax",
-        "patch-crocoddyl": "patch-crocoddyl",
         "patch-hpp": "patch-hpp",
         "patch-mim-solvers": "patch-mim-solvers",
+        "patch-mim-solvers-2": "patch-mim-solvers-2",
+        "patch-osg": "patch-osg",
+        "patch-piqp": "patch-piqp",
+        "patch-qtwebengine": "patch-qtwebengine",
+        "patch-qtwebengine-2": "patch-qtwebengine-2",
         "src-agimus-msgs": "src-agimus-msgs",
         "src-colmpc": "src-colmpc",
         "src-example-parallel-robots": "src-example-parallel-robots",
@@ -61,16 +66,15 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1744236712,
-        "narHash": "sha256-PcBHUzvouSGAbC+pfM/PCnfbQquWIPwZbHcr+J/SrHI=",
+        "lastModified": 1744298053,
+        "narHash": "sha256-yc/2KeiawUP5tAkn3+ZJdIe9S17+u3sYedVY5hyW4VU=",
         "owner": "gepetto",
         "repo": "nix",
-        "rev": "ac1ca5021630c56b839d99cce034106c0f6e01ce",
+        "rev": "90ae311b63582da3fc1f996781f4409576b0a4e8",
         "type": "github"
       },
       "original": {
         "owner": "gepetto",
-        "ref": "centralize",
         "repo": "nix",
         "type": "github"
       }
@@ -126,7 +130,19 @@
         "type": "github"
       }
     },
-    "patch-aligator": {
+    "patch-0-crocoddyl": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ZXHVE5pfGVlYlqqqhYsIJAihZClkxANbjs/IjH42Qu0=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/391300.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/391300.patch"
+      }
+    },
+    "patch-1-aligator": {
       "flake": false,
       "locked": {
         "narHash": "sha256-HWz25MnKcHvKk7cSnxR5YG8akb8apIrnIRNTQEXwZlM=",
@@ -150,28 +166,16 @@
         "url": "https://github.com/NixOS/nixpkgs/pull/393394.patch"
       }
     },
-    "patch-crocoddyl": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-ZXHVE5pfGVlYlqqqhYsIJAihZClkxANbjs/IjH42Qu0=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/391300.patch"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/391300.patch"
-      }
-    },
     "patch-hpp": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Rj07W99G9CvZEc/92lAJa8JYqgFKhaIoeyJuatpLlhk=",
+        "narHash": "sha256-8kApZVQPyqGJ++E+PVkOatWqozcY5bar9YexrdOUZws=",
         "type": "file",
-        "url": "https://github.com/nim65s/nixpkgs/pull/2.patch"
+        "url": "https://github.com/nim65s/nixpkgs/pull/3.patch"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/nim65s/nixpkgs/pull/2.patch"
+        "url": "https://github.com/nim65s/nixpkgs/pull/3.patch"
       }
     },
     "patch-mim-solvers": {
@@ -184,6 +188,66 @@
       "original": {
         "type": "file",
         "url": "https://github.com/NixOS/nixpkgs/pull/391930.patch"
+      }
+    },
+    "patch-mim-solvers-2": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-2LjYEWw3D2G5a1oAYHSd6HSJ1lNKvr54ImeaZEjzm7g=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/397664.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/397664.patch"
+      }
+    },
+    "patch-osg": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-gJL0e5cGFzUGLQOefln8FUqAGNXdjb6QceakP1KGH/o=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/384430.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/384430.patch"
+      }
+    },
+    "patch-piqp": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-r+kYmIImYLYj3PnCSpG5Yfs8SR/v412l0+SKim72B7s=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/374657.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/374657.patch"
+      }
+    },
+    "patch-qtwebengine": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-NkLO1FruRQ/OE0MkX83XUA+ieTATrVkmHE+fLqkAQR8=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/386846.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/386846.patch"
+      }
+    },
+    "patch-qtwebengine-2": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-pwhGFwoWRS1mbcQXJDRKf9Hs6Lknc+9AvON57g1O8F8=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/383990.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/383990.patch"
       }
     },
     "root": {

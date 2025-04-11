@@ -2,7 +2,7 @@
   description = "ROS messages of the agimus-project.";
 
   inputs = {
-    gepetto.url = "github:gepetto/nix/centralize";
+    gepetto.url = "github:gepetto/nix";
     flake-parts.follows = "gepetto/flake-parts";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
