@@ -200,6 +200,10 @@
         "nixpkgs": [
           "gepetto",
           "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "gepetto",
+          "treefmt-nix"
         ]
       }
     },

@@ -6,12 +6,14 @@
     flake-parts.follows = "gepetto/flake-parts";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
+    treefmt-nix.follows = "gepetto/treefmt-nix";
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
+      imports = [ inputs.treefmt-nix.flakeModule ];
       perSystem =
         {
           lib,
@@ -28,8 +30,10 @@
               inputs.gepetto.overlays.default
             ];
           };
+          checks = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") self'.packages;
           packages = {
             default = self'.packages.py-agimus-msgs;
+            py-agimus-msgs = pkgs.python3Packages.toPythonModule self'.packages.agimus-msgs;
             agimus-msgs = pkgs.agimus-msgs.overrideAttrs {
               src = lib.fileset.toSource {
                 root = ./.;
@@ -40,7 +44,10 @@
                 ];
               };
             };
-            py-agimus-msgs = pkgs.python3Packages.toPythonModule self'.packages.agimus-msgs;
+          };
+          treefmt.programs = {
+            deadnix.enable = true;
+            nixfmt.enable = true;
           };
         };
     };
