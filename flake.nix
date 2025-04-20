@@ -32,9 +32,8 @@
           };
           checks = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") self'.packages;
           packages = {
-            default = self'.packages.py-agimus-msgs;
-            py-agimus-msgs = pkgs.python3Packages.toPythonModule self'.packages.agimus-msgs;
-            agimus-msgs = pkgs.agimus-msgs.overrideAttrs {
+            default = self'.packages.agimus-msgs;
+            agimus-msgs = pkgs.rosPackages.humble.agimus-msgs.overrideAttrs {
               src = lib.fileset.toSource {
                 root = ./.;
                 fileset = lib.fileset.unions [
