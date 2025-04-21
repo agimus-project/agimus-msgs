@@ -19,7 +19,7 @@ jobs:
       # Setup the machines and build environment
       #
       - name: Install ROS.
-        uses: ros-tooling/setup-ros@0.7.10
+        uses: ros-tooling/setup-ros@0.7.11
         with:
           required-ros-distributions: ${{ matrix.ros_version }}
 
