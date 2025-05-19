@@ -1,6 +1,9 @@
 # MpcDebug.msg
 # This message represents debug data of the mpc.
 
+# Id that corresponds to the id of the trajectory point at the first node of this solver iteration.
+int32 trajectory_point_id
+
 # states predictions of the solver
 # Size should be state dimension multiplied by the number of nodes
 std_msgs/Float64MultiArray states_predictions

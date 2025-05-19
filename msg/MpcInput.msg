@@ -1,6 +1,7 @@
 # MpcInput.msg
 # This message represents the state of a robot, including joint values, velocities, accelerations,
 # and the target end-effector pose.
+int32 id
 
 # Joint positions (rad for revolute joints or meters for prismatic joints)
 # Length of the list should match the number of robot joints
