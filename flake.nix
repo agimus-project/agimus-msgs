@@ -2,37 +2,24 @@
   description = "ROS messages of the agimus-project.";
 
   inputs = {
-    gepetto.url = "github:gepetto/nix";
+    gepetto.url = "github:gepetto/nix/module";
     flake-parts.follows = "gepetto/flake-parts";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
+    systems.follows = "gepetto/systems";
     treefmt-nix.follows = "gepetto/treefmt-nix";
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      imports = [ inputs.treefmt-nix.flakeModule ];
+      systems = import inputs.systems;
+      imports = [ inputs.gepetto.flakeModule ];
       perSystem =
+        { lib, pkgs, ... }:
         {
-          lib,
-          pkgs,
-          system,
-          self',
-          ...
-        }:
-        {
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              inputs.nix-ros-overlay.overlays.default
-              inputs.gepetto.overlays.default
-            ];
-          };
-          checks = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") self'.packages;
-          packages = {
-            default = self'.packages.agimus-msgs;
+          packages = lib.filterAttrs (_n: v: v.meta.available && !v.meta.broken) (rec {
+            default = agimus-msgs;
             agimus-msgs = pkgs.rosPackages.humble.agimus-msgs.overrideAttrs {
               src = lib.fileset.toSource {
                 root = ./.;
@@ -43,11 +30,7 @@
                 ];
               };
             };
-          };
-          treefmt.programs = {
-            deadnix.enable = true;
-            nixfmt.enable = true;
-          };
+          });
         };
     };
 }
