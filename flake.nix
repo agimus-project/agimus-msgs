@@ -16,15 +16,10 @@
       systems = import inputs.systems;
       imports = [ inputs.gepetto.flakeModule ];
       perSystem =
+        { lib, pkgs, ... }:
         {
-          lib,
-          pkgs,
-          self',
-          ...
-        }:
-        {
-          packages = {
-            default = self'.packages.agimus-msgs;
+          packages = lib.filterAttrs (_n: v: v.meta.available && !v.meta.broken) (rec {
+            default = agimus-msgs;
             agimus-msgs = pkgs.rosPackages.humble.agimus-msgs.overrideAttrs {
               src = lib.fileset.toSource {
                 root = ./.;
@@ -35,7 +30,7 @@
                 ];
               };
             };
-          };
+          });
         };
     };
 }
