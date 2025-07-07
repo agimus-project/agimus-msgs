@@ -43,5 +43,8 @@ geometry_msgs/Wrench force
 # Corresponding cost weights
 float64[6] w_force
 
+# Collision avoidance costs weight
+float64 w_collision_avoidance
+
 # End-effector frame name
 string ee_frame_name
