@@ -9,7 +9,7 @@ find_package(std_msgs REQUIRED)
 
 # Define message files
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/MpcInput.msg" "msg/MpcInputArray.msg" "msg/MpcDebug.msg" "msg/Residual.msg"
+  "msg/MpcEEInput.msg" "msg/MpcInput.msg" "msg/MpcInputArray.msg" "msg/MpcDebug.msg" "msg/Residual.msg"
   DEPENDENCIES geometry_msgs std_msgs
 )
 
