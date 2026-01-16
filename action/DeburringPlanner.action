@@ -1,0 +1,11 @@
+# goal definition
+# goal can be either handle name or goal configuration
+string handle_name
+bool do_insertion
+---
+# result definition
+string error_msgs
+---
+# feedback definition
+# Progress from 0.0 to 1.0 on how much of the path was already executed
+float64 progress
