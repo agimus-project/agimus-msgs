@@ -12,25 +12,46 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-      imports = [ inputs.gepetto.flakeModule ];
-      perSystem =
-        { lib, pkgs, ... }:
-        {
-          packages = lib.filterAttrs (_n: v: v.meta.available && !v.meta.broken) (rec {
-            default = agimus-msgs;
-            agimus-msgs = pkgs.rosPackages.humble.agimus-msgs.overrideAttrs {
-              src = lib.fileset.toSource {
-                root = ./.;
-                fileset = lib.fileset.unions [
-                  ./CMakeLists.txt
-                  ./msg
-                  ./package.xml
-                ];
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, self, ... }:
+      {
+        systems = import inputs.systems;
+        imports = [
+          inputs.gepetto.flakeModule
+          { gepetto-pkgs.overlays = [ self.overlays.default ]; }
+        ];
+        flake.overlays.default =
+          _final: prev:
+          let
+            scope = _ros-final: ros-prev: {
+              agimus-msgs = ros-prev.agimus-msgs.overrideAttrs {
+                src = lib.fileset.toSource {
+                  root = ./.;
+                  fileset = lib.fileset.unions [
+                    ./CMakeLists.txt
+                    ./action
+                    ./msg
+                    ./package.xml
+                  ];
+                };
               };
             };
-          });
-        };
-    };
+          in
+          {
+            rosPackages = prev.rosPackages // {
+              humble = prev.rosPackages.humble.overrideScope scope;
+              jazzy = prev.rosPackages.jazzy.overrideScope scope;
+            };
+          };
+        perSystem =
+          { pkgs, ... }:
+          {
+            packages = lib.filterAttrs (_n: v: v.meta.available && !v.meta.broken) (rec {
+              default = humble-agimus-msgs;
+              humble-agimus-msgs = pkgs.rosPackages.humble.agimus-msgs;
+              jazzy-agimus-msgs = pkgs.rosPackages.jazzy.agimus-msgs;
+            });
+          };
+      }
+    );
 }
