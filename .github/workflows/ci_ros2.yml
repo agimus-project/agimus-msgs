@@ -1,4 +1,4 @@
-name: Ubuntu20.04, ROS2 Continuous Integration
+name: ROS2 Continuous Integration
 
 on: [push, pull_request]
 
@@ -6,32 +6,25 @@ jobs:
   build:
     strategy:
       matrix:
-        include:
-          - ros_version: "humble"
-            ubuntu_version: "ubuntu-22.04"
-          - ros_version: "iron"
-            ubuntu_version: "ubuntu-22.04"
-          - ros_version: "jazzy"
-            ubuntu_version: "ubuntu-24.04"
-    runs-on: ${{ matrix.ubuntu_version }}
+        env:
+          - {ROS_DISTRO: humble}
+          - {ROS_DISTRO: jazzy}
+          - {ROS_DISTRO: kilted}
+          - {ROS_DISTRO: rolling}
+    runs-on: ubuntu-latest
     steps:
-      #
-      # Setup the machines and build environment
-      #
-      - name: Install ROS.
-        uses: ros-tooling/setup-ros@0.7.15
-        with:
-          required-ros-distributions: ${{ matrix.ros_version }}
-
-      #
-      # Checkout the current branch
-      #
       - uses: actions/checkout@v6
 
-      #
-      # Build and test the repo
-      #
-      - uses: ros-tooling/action-ros-ci@0.4.5
+      - uses: 'ros-industrial/industrial_ci@0f4bd2d1b926eac95fd6bc5bd1fcb3051a6e927d'
+        env: ${{ matrix.env }}
+
+  check:
+    if: always()
+    name: check-ros-ci
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: re-actors/alls-green@release/v1
         with:
-          package-name: agimus_msgs
-          target-ros2-distro: ${{ matrix.ros_version }}
+          jobs: ${{ toJSON(needs) }}
