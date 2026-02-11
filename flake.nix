@@ -2,12 +2,12 @@
   description = "ROS messages of the agimus-project.";
 
   inputs = {
-    gepetto.url = "github:gepetto/nix";
-    flake-parts.follows = "gepetto/flake-parts";
-    nixpkgs.follows = "gepetto/nixpkgs";
-    nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
-    systems.follows = "gepetto/systems";
-    treefmt-nix.follows = "gepetto/treefmt-nix";
+    gazebros2nix.url = "github:gepetto/gazebros2nix";
+    flake-parts.follows = "gazebros2nix/flake-parts";
+    nixpkgs.follows = "gazebros2nix/nixpkgs";
+    nix-ros-overlay.follows = "gazebros2nix/nix-ros-overlay";
+    systems.follows = "gazebros2nix/systems";
+    treefmt-nix.follows = "gazebros2nix/treefmt-nix";
   };
 
   outputs =
@@ -17,8 +17,8 @@
       {
         systems = import inputs.systems;
         imports = [
-          inputs.gepetto.flakeModule
-          { gepetto-pkgs.overlays = [ self.overlays.default ]; }
+          inputs.gazebros2nix.flakeModule
+          { gazebros2nix-pkgs.overlays = [ self.overlays.default ]; }
         ];
         flake.overlays.default =
           _final: prev:
@@ -41,15 +41,19 @@
             rosPackages = prev.rosPackages // {
               humble = prev.rosPackages.humble.overrideScope scope;
               jazzy = prev.rosPackages.jazzy.overrideScope scope;
+              kilted = prev.rosPackages.kilted.overrideScope scope;
+              rolling = prev.rosPackages.rolling.overrideScope scope;
             };
           };
         perSystem =
           { pkgs, ... }:
           {
             packages = lib.filterAttrs (_n: v: v.meta.available && !v.meta.broken) (rec {
-              default = humble-agimus-msgs;
+              default = rolling-agimus-msgs;
               humble-agimus-msgs = pkgs.rosPackages.humble.agimus-msgs;
               jazzy-agimus-msgs = pkgs.rosPackages.jazzy.agimus-msgs;
+              kilted-agimus-msgs = pkgs.rosPackages.kilted.agimus-msgs;
+              rolling-agimus-msgs = pkgs.rosPackages.rolling.agimus-msgs;
             });
           };
       }
