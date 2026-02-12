@@ -6,7 +6,7 @@
   <description>Agimus project ROS messages</description>
   <author email="kateryna.zorina@cvut.cz">Kateryna Zorina</author>
   <maintainer email="guilhem.saurel@laas.fr">Guilhem Saurel</maintainer>
-  <license>BSD</license>
+  <license>BSD-2-Clause</license>
 
 
   <url type="website">https://github.com/agimus-project/agimus_msgs</url>
