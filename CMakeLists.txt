@@ -9,9 +9,16 @@ find_package(std_msgs REQUIRED)
 find_package(action_msgs REQUIRED)
 
 # Define message files
-rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/MpcEEInput.msg" "msg/MpcInput.msg" "msg/MpcInputArray.msg" "msg/MpcDebug.msg" "msg/Residual.msg" "action/DeburringPlanner.action"
-  DEPENDENCIES geometry_msgs std_msgs
-)
+rosidl_generate_interfaces(
+  ${PROJECT_NAME}
+  "msg/MpcEEInput.msg"
+  "msg/MpcInput.msg"
+  "msg/MpcInputArray.msg"
+  "msg/MpcDebug.msg"
+  "msg/Residual.msg"
+  "action/DeburringPlanner.action"
+  DEPENDENCIES
+  geometry_msgs
+  std_msgs)
 
 ament_package()
