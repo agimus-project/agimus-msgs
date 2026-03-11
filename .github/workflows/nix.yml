@@ -5,13 +5,11 @@ on:
       - devel
       - master
       - main
-      - humble-devel
   pull_request:
     branches:
       - devel
       - master
       - main
-      - humble-devel
 jobs:
   distros:
     name: "${{ matrix.build }} on ${{ matrix.os }}"
