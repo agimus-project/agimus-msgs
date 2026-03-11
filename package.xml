@@ -2,7 +2,7 @@
 <package format="3">
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
   <name>agimus_msgs</name>
-  <version>0.0.2</version>
+  <version>1.0.0</version>
   <description>Agimus project ROS messages</description>
   <author email="kateryna.zorina@cvut.cz">Kateryna Zorina</author>
   <maintainer email="guilhem.saurel@laas.fr">Guilhem Saurel</maintainer>
