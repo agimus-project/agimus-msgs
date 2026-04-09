@@ -19,6 +19,7 @@ rosidl_generate_interfaces(
   "action/DeburringPlanner.action"
   DEPENDENCIES
   geometry_msgs
-  std_msgs)
+  std_msgs
+)
 
 ament_package()
